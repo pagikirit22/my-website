@@ -12,59 +12,26 @@
     header { background:#FF6F61; padding:20px; text-align:center; color:white; }
     nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
 
-    /* HERO */
-    .hero {
-      text-align:center;
-      padding:70px 20px;
-      background:#111;
-      color:#fff;
-    }
+    .hero { text-align:center; padding:70px 20px; background:#111; color:#fff; }
     .hero h2 { font-size:32px; margin-bottom:15px; }
     .hero p { font-size:18px; margin-bottom:30px; color:#ccc; }
 
-    /* BUTTONS */
-    .hero-buttons {
-      display:flex;
-      justify-content:center;
-      gap:15px;
-      flex-wrap:wrap;
-    }
+    .hero-buttons { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
 
     .animated-button {
-      padding:15px 30px;
-      font-size:18px;
-      font-weight:bold;
-      color:white;
-      text-decoration:none;
-      border-radius:10px;
-      transition:0.3s;
-      min-width:220px;
-      text-align:center;
+      padding:15px 30px; font-size:18px; font-weight:bold;
+      color:white; text-decoration:none; border-radius:10px;
+      transition:0.3s; min-width:220px; text-align:center;
     }
 
-    #indiaBtn { background:#1abc9c; display:none; } /* Initially hidden */
-    #intlBtn { background:#3498db; display:none; }  /* Initially hidden */
+    #indiaBtn { background:#1abc9c; display:none; }
+    #intlBtn { background:#3498db; display:none; }
 
-    .animated-button:hover {
-      transform:translateY(-3px);
-      box-shadow:0 8px 15px rgba(0,0,0,0.3);
-    }
+    .animated-button:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
 
-    /* SECTIONS */
     .section { padding:50px 20px; text-align:center; }
-    .benefits {
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:20px;
-    }
-    .benefit-box {
-      background:#fff;
-      padding:20px;
-      border-radius:10px;
-      width:250px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    }
+    .benefits { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
+    .benefit-box { background:#fff; padding:20px; border-radius:10px; width:250px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
 
     footer { background:#333; color:white; padding:20px; text-align:center; }
 
@@ -86,23 +53,16 @@
   </nav>
 </header>
 
-<!-- HERO SECTION -->
 <section class="hero">
   <h2>Ready-Made Gym Website for Sale</h2>
   <p>Perfect for Gym Owners & Trainers – Get a professional website instantly</p>
 
   <div class="hero-buttons">
-    <a id="indiaBtn"
-       href="https://kirit22.gumroad.com/l/ecvuab"
-       class="animated-button"
-       target="_blank">
+    <a id="indiaBtn" href="https://kirit22.gumroad.com/l/ecvuab" class="animated-button" target="_blank">
       <span class="currency" data-inr="₹999" data-usd="$29">Buy ₹999</span>
     </a>
 
-    <a id="intlBtn"
-       href="https://kirit22.gumroad.com/l/ivzfe"
-       class="animated-button"
-       target="_blank">
+    <a id="intlBtn" href="https://kirit22.gumroad.com/l/ivzfe" class="animated-button" target="_blank">
       <span class="currency" data-inr="₹999" data-usd="$29">Buy $29</span>
     </a>
   </div>
@@ -112,7 +72,6 @@
   </p>
 </section>
 
-<!-- BENEFITS -->
 <section class="section">
   <h2>Why Buy This Gym Website?</h2>
   <div class="benefits">
@@ -125,7 +84,6 @@
   </div>
 </section>
 
-<!-- PERFECT FOR -->
 <section class="section">
   <h2>Perfect For</h2>
   <p>Gym Owners • Personal Trainers • Fitness Startups</p>
@@ -135,44 +93,32 @@
   <p>© 2026 FitLife Gym</p>
 </footer>
 
-<!-- IP-BASED BUTTON CONTROL + DYNAMIC CURRENCY EVERYWHERE -->
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     const indiaBtn = document.getElementById('indiaBtn');
     const intlBtn = document.getElementById('intlBtn');
 
-    // Initially hide both
-    indiaBtn.style.display = 'none';
-    intlBtn.style.display = 'none';
+    // Simple browser language detection for static site
+    const lang = navigator.language || navigator.userLanguage;
+    const isIndia = (lang === 'en-IN' || lang.startsWith('hi'));
 
-    // Detect country using IP API
-    fetch("https://ipapi.co/json/")
-      .then(res => res.json())
-      .then(data => {
-          const isIndia = data.country === "IN";
+    // Show correct button only
+    if(isIndia){
+        indiaBtn.style.display = 'inline-block';
+        intlBtn.style.display = 'none';
+    } else {
+        indiaBtn.style.display = 'none';
+        intlBtn.style.display = 'inline-block';
+    }
 
-          if(isIndia){
-              indiaBtn.style.display = 'inline-block';
-              intlBtn.style.display = 'none';
-          } else {
-              indiaBtn.style.display = 'none';
-              intlBtn.style.display = 'inline-block';
-          }
-
-          // Update all .currency elements dynamically
-          const currencyElements = document.querySelectorAll('.currency');
-          currencyElements.forEach(el => {
-              const inr = el.getAttribute('data-inr');
-              const usd = el.getAttribute('data-usd');
-              if(isIndia && inr) el.innerText = el.innerText.replace(/[$₹].*/, inr);
-              if(!isIndia && usd) el.innerText = el.innerText.replace(/[$₹].*/, usd);
-          });
-      })
-      .catch(() => {
-          // fallback if API fails
-          indiaBtn.style.display = 'inline-block';
-          intlBtn.style.display = 'inline-block';
-      });
+    // Update all .currency elements
+    const currencyElements = document.querySelectorAll('.currency');
+    currencyElements.forEach(el => {
+        const inr = el.getAttribute('data-inr');
+        const usd = el.getAttribute('data-usd');
+        if(isIndia && inr) el.innerText = el.innerText.replace(/[$₹].*/, inr);
+        if(!isIndia && usd) el.innerText = el.innerText.replace(/[$₹].*/, usd);
+    });
 });
 </script>
 
