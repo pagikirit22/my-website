@@ -24,8 +24,8 @@
       transition:0.3s; min-width:220px; text-align:center;
     }
 
-    #indiaBtn { background:#1abc9c; display:none; }
-    #intlBtn { background:#3498db; display:none; }
+    /* Initially hidden buttons to prevent flash */
+    #indiaBtn, #intlBtn { display: none; }
 
     .animated-button:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
 
@@ -98,11 +98,15 @@ window.addEventListener('DOMContentLoaded', () => {
     const indiaBtn = document.getElementById('indiaBtn');
     const intlBtn = document.getElementById('intlBtn');
 
-    // Simple browser language detection for static site
+    // Hide both initially (already in CSS, safe)
+    indiaBtn.style.display = 'none';
+    intlBtn.style.display = 'none';
+
+    // Detect India users using browser language
     const lang = navigator.language || navigator.userLanguage;
     const isIndia = (lang === 'en-IN' || lang.startsWith('hi'));
 
-    // Show correct button only
+    // Show only the correct button
     if(isIndia){
         indiaBtn.style.display = 'inline-block';
         intlBtn.style.display = 'none';
@@ -111,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
         intlBtn.style.display = 'inline-block';
     }
 
-    // Update all .currency elements
+    // Update all .currency elements dynamically
     const currencyElements = document.querySelectorAll('.currency');
     currencyElements.forEach(el => {
         const inr = el.getAttribute('data-inr');
