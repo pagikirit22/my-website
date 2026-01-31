@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FitLife Gym - Ready Made Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; color:#333; }
+    header { background:#FF6F61; padding:20px; text-align:center; color:white; }
+    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+
+    /* HERO */
+    .hero {
+      text-align:center;
+      padding:70px 20px;
+      background:#111;
+      color:#fff;
+    }
+    .hero h2 { font-size:32px; margin-bottom:15px; }
+    .hero p { font-size:18px; margin-bottom:30px; color:#ccc; }
+
+    /* BUTTONS */
+    .hero-buttons {
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .animated-button {
+      padding:15px 30px;
+      font-size:18px;
+      font-weight:bold;
+      color:white;
+      text-decoration:none;
+      border-radius:10px;
+      transition:0.3s;
+      min-width:220px;
+      text-align:center;
+    }
+
+    #indiaBtn { background:#1abc9c; }
+    #intlBtn { background:#3498db; }
+
+    .animated-button:hover {
+      transform:translateY(-3px);
+      box-shadow:0 8px 15px rgba(0,0,0,0.3);
+    }
+
+    /* SECTIONS */
+    .section { padding:50px 20px; text-align:center; }
+    .benefits {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+    .benefit-box {
+      background:#fff;
+      padding:20px;
+      border-radius:10px;
+      width:250px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    footer { background:#333; color:white; padding:20px; text-align:center; }
+
+    @media(max-width:768px){
+      .hero h2 { font-size:24px; }
+      .hero p { font-size:16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>FitLife Gym</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h2>Ready-Made Gym Website for Sale</h2>
+  <p>Perfect for Gym Owners & Trainers – Get a professional website instantly</p>
+
+  <div class="hero-buttons">
+    <a id="indiaBtn"
+       href="https://kirit22.gumroad.com/l/ecvuab"
+       class="animated-button"
+       target="_blank">
+      🇮🇳 Buy for India – ₹999
+    </a>
+
+    <a id="intlBtn"
+       href="https://kirit22.gumroad.com/l/ivzfe"
+       class="animated-button"
+       target="_blank">
+      🌍 Buy International – $29
+    </a>
+  </div>
+
+  <p style="font-size:14px; color:#888; margin-top:15px;">
+    Website Template – Not a Training Program
+  </p>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <h2>Why Buy This Gym Website?</h2>
+  <div class="benefits">
+    <div class="benefit-box">✔ Ready-made professional gym website</div>
+    <div class="benefit-box">✔ Fully editable HTML & CSS</div>
+    <div class="benefit-box">✔ Mobile & desktop responsive</div>
+    <div class="benefit-box">✔ Instant download after payment</div>
+  </div>
+</section>
+
+<!-- PERFECT FOR -->
+<section class="section">
+  <h2>Perfect For</h2>
+  <p>Gym Owners • Personal Trainers • Fitness Startups</p>
+</section>
+
+<footer>
+  <p>© 2026 FitLife Gym</p>
+</footer>
+
+<!-- LOCATION BASED BUTTON CONTROL -->
+<script>
+  fetch("https://ipapi.co/json/")
+    .then(res => res.json())
+    .then(data => {
+      if (data.country === "IN") {
+        document.getElementById("intlBtn").style.display = "none";
+      } else {
+        document.getElementById("indiaBtn").style.display = "none";
+      }
+    })
+    .catch(() => {
+      // fallback: show both buttons
+      document.getElementById("indiaBtn").style.display = "inline-block";
+      document.getElementById("intlBtn").style.display = "inline-block";
+    });
+</script>
+
+</body>
+</html>
