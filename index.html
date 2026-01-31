@@ -31,7 +31,20 @@
 
     .section { padding:50px 20px; text-align:center; }
     .benefits { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
-    .benefit-box { background:#fff; padding:20px; border-radius:10px; width:250px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+
+    /* Benefit boxes default */
+    .benefit-box { 
+      background:#fff; 
+      padding:20px; 
+      border-radius:10px; 
+      width:250px; 
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Highlight currency boxes */
+    .benefit-box.currency { 
+      background:#e0f7ff; /* soft light blue */ 
+    }
 
     footer { background:#333; color:white; padding:20px; text-align:center; }
 
@@ -98,7 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const indiaBtn = document.getElementById('indiaBtn');
     const intlBtn = document.getElementById('intlBtn');
 
-    // Hide both initially (already in CSS, safe)
+    // Hide both initially
     indiaBtn.style.display = 'none';
     intlBtn.style.display = 'none';
 
