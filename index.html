@@ -1,180 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Template</title>
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
-  body { background: #f0f2f5; padding-bottom: 100px; overflow-x:hidden; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitLife Gym – Ready Made Gym Website</title>
 
-  /* Hero Section with animated gradient */
-  .hero {
-    color: white;
-    text-align: center;
-    padding: 100px 20px 60px;
-    position: relative;
-    background: linear-gradient(135deg, #7b2ff7, #f107a3, #ff4e50);
-    background-size: 600% 600%;
-    animation: gradientShift 15s ease infinite;
-    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-blend-mode: overlay;
-    overflow: hidden;
-  }
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #020617;
+      color: #ffffff;
+      text-align: center;
+    }
 
-  .hero h1, .hero p, .buy-buttons { opacity:0; transform: translateY(30px); transition: all 0.8s ease; }
-  .hero.visible h1, .hero.visible p, .hero.visible .buy-buttons { opacity:1; transform: translateY(0); }
+    header {
+      padding: 90px 20px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
 
-  .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-  .hero p { font-size: 1.25rem; margin-bottom: 40px; }
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
 
-  /* Buy Buttons in hero */
-  .buy-buttons { display: flex; flex-direction: column; gap: 20px; justify-content: center; align-items: center; }
-  @media(min-width:768px){ .buy-buttons { flex-direction: row; } }
+    .tagline {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
 
-  .cta-button {
-    position: relative;
-    display: inline-block;
-    padding: 18px 50px;
-    border-radius: 24px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: white;
-    text-decoration: none;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
-  .india { background: linear-gradient(90deg, #fbc531, #e84118, #ff6b6b); }
-  .intl { background: linear-gradient(90deg, #00a8ff, #9c88ff, #8c7ae6); }
+    .sub {
+      font-size: 16px;
+      margin-bottom: 35px;
+      opacity: 0.95;
+    }
 
-  .cta-button:hover {
-    transform: scale(1.07) translateY(-3px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.5);
-  }
-  .cta-button::after {
-    content:'';
-    position:absolute;
-    top:0;
-    left:-75%;
-    width:50%;
-    height:100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
-    transform: skewX(-25deg);
-  }
-  .cta-button:hover::after { left:125%; transition: all 0.7s ease; }
+    .cta {
+      margin-bottom: 18px;
+    }
 
-  /* Sticky Bottom CTA Bar */
-  .sticky-cta {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #222;
-    padding: 12px 10px;
-    text-align: center;
-    z-index: 9999;
-    animation: slideUp 0.6s ease forwards;
-  }
-  .sticky-cta a {
-    display: inline-block;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    padding: 16px 0;
-    font-size: 1.1rem;
-    border-radius: 24px;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
-  }
-  .sticky-cta a:hover { transform: scale(1.07) translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.5); }
-  .sticky-cta a::after {
-    content:'';
-    position:absolute;
-    top:0;
-    left:-75%;
-    width:50%;
-    height:100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
-    transform: skewX(-25deg);
-  }
-  .sticky-cta a:hover::after { left:125%; transition: all 0.7s ease; }
+    .btn {
+      background: #ffffff;
+      color: #16a34a;
+      padding: 16px 36px;
+      border-radius: 40px;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
 
-  @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
+    .btn:hover {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
 
-  @media(max-width:767px){ .sticky-cta { display: block; } }
-</style>
+    .trust {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 6px;
+    }
+
+    section {
+      padding: 70px 20px;
+      background: #020617;
+    }
+
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    ul li {
+      margin: 14px 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    footer {
+      padding: 22px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Hero Section -->
-<section class="hero" id="heroSection">
-  <h1>Get Your Premium Template Now</h1>
-  <p>Instant Download • Lifetime Access</p>
+  <header>
+    <h1>Ready-Made Gym Website for Sale</h1>
+    <div class="tagline">Perfect for Gym Owners & Trainers</div>
+    <div class="sub">
+      Launch your gym online instantly with a professional website
+    </div>
 
-  <div class="buy-buttons">
-    <a href="https://kirit22.gumroad.com/l/ecvuab" target="_blank" class="cta-button india" id="indiaBtnHero">
-      Buy Now • India ₹2,999
-    </a>
+    <div class="cta">
+      <a href="https://kirit22.gumroad.com/l/ivzfe" class="btn">Buy Now</a>
+    </div>
 
-    <a href="https://kirit22.gumroad.com/l/ivzfe" target="_blank" class="cta-button intl" id="intlBtnHero">
-      Buy Now • International $50
-    </a>
-  </div>
-</section>
+    <div class="trust">
+      Pricing auto-adjusts based on your location at checkout
+    </div>
+  </header>
 
-<!-- Sticky Bottom CTA (Mobile) -->
-<div class="sticky-cta">
-  <a href="#" target="_blank" id="stickyBtn">Buy Now</a>
-</div>
+  <section>
+    <h2>Why This Website?</h2>
+    <ul>
+      <li>✔ Clean & modern gym-focused design</li>
+      <li>✔ Mobile + desktop responsive</li>
+      <li>✔ No coding knowledge required</li>
+      <li>✔ Perfect for gyms, trainers & fitness studios</li>
+      <li>✔ Instant download & easy setup</li>
+    </ul>
+  </section>
 
-<script>
-  // Country detection
-  const userLang = navigator.language || navigator.userLanguage;
-  const indiaHero = document.getElementById('indiaBtnHero');
-  const intlHero = document.getElementById('intlBtnHero');
-  const stickyBtn = document.getElementById('stickyBtn');
-
-  let isIndia = userLang.toLowerCase().includes('en-in') || userLang.toLowerCase().includes('hi');
-
-  if(isIndia){
-    indiaHero.style.display = 'inline-block';
-    intlHero.style.display = 'none';
-    stickyBtn.href = 'https://kirit22.gumroad.com/l/ecvuab';
-    stickyBtn.textContent = 'Buy Now • India ₹2,999';
-  } else {
-    indiaHero.style.display = 'none';
-    intlHero.style.display = 'inline-block';
-    stickyBtn.href = 'https://kirit22.gumroad.com/l/ivzfe';
-    stickyBtn.textContent = 'Buy Now • International $50';
-  }
-
-  // Hero scroll animation
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      document.getElementById('heroSection').classList.add('visible');
-    }, 300);
-  });
-
-  // Sticky CTA slide/fade on scroll
-  const stickyBar = document.querySelector('.sticky-cta');
-  window.addEventListener('scroll', () => {
-    let scrollY = window.scrollY;
-    if(scrollY > 100){ stickyBar.style.bottom = '0'; }
-    else{ stickyBar.style.bottom = '-80px'; }
-  });
-</script>
+  <footer>
+    © FitLife Gym Website Template
+  </footer>
 
 </body>
 </html>
