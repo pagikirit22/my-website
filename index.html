@@ -5,22 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premium Template</title>
 <style>
-  /* Basic Reset */
   * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
-  body { background: #f0f2f5; }
+  body { background: #f0f2f5; padding-bottom: 100px; overflow-x:hidden; }
 
-  /* Hero Section */
+  /* Hero Section with animated gradient + parallax */
   .hero {
-    background: linear-gradient(135deg, #7b2ff7, #f107a3);
     color: white;
     text-align: center;
     padding: 100px 20px 60px;
     position: relative;
+    background: linear-gradient(135deg, #7b2ff7, #f107a3, #ff4e50);
+    background-size: 600% 600%;
+    animation: gradientShift 15s ease infinite;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-blend-mode: overlay;
+    overflow: hidden;
   }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero h1, .hero p, .buy-buttons { opacity:0; transform: translateY(30px); transition: all 0.8s ease; }
+  .hero.visible h1, .hero.visible p, .hero.visible .buy-buttons { opacity:1; transform: translateY(0); }
+
   .hero h1 { font-size: 3rem; margin-bottom: 20px; }
   .hero p { font-size: 1.25rem; margin-bottom: 40px; }
 
-  /* Buy Buttons */
+  /* Buy Buttons in hero */
   .buy-buttons { display: flex; flex-direction: column; gap: 20px; justify-content: center; align-items: center; }
   @media(min-width:768px){ .buy-buttons { flex-direction: row; } }
 
@@ -37,18 +51,13 @@
     transition: all 0.3s ease;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   }
-
-  /* Gradient Buttons */
   .india { background: linear-gradient(90deg, #fbc531, #e84118, #ff6b6b); }
   .intl { background: linear-gradient(90deg, #00a8ff, #9c88ff, #8c7ae6); }
 
-  /* Hover effects */
   .cta-button:hover {
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+    transform: scale(1.07) translateY(-3px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.5);
   }
-
-  /* Light sweep / shine animation */
   .cta-button::after {
     content:'';
     position:absolute;
@@ -59,52 +68,116 @@
     background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
     transform: skewX(-25deg);
   }
-  .cta-button:hover::after {
-    left:125%;
-    transition: all 0.7s ease;
-  }
+  .cta-button:hover::after { left:125%; transition: all 0.7s ease; }
 
-  /* Sticky full-width on mobile */
-  @media(max-width:767px){
-    .cta-button { width: 90%; padding: 16px 0; font-size: 1.1rem; }
+  /* Sticky Bottom CTA Bar */
+  .sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #222;
+    padding: 12px 10px;
+    text-align: center;
+    z-index: 9999;
+    animation: slideUp 0.6s ease forwards;
   }
+  .sticky-cta a {
+    display: inline-block;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    padding: 16px 0;
+    font-size: 1.1rem;
+    border-radius: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .sticky-cta a:hover { transform: scale(1.07) translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.5); }
+  .sticky-cta a::after {
+    content:'';
+    position:absolute;
+    top:0;
+    left:-75%;
+    width:50%;
+    height:100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
+    transform: skewX(-25deg);
+  }
+  .sticky-cta a:hover::after { left:125%; transition: all 0.7s ease; }
+
+  @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
+
+  @media(max-width:767px){ .sticky-cta { display: block; } }
 </style>
 </head>
 <body>
 
 <!-- Hero Section -->
-<section class="hero">
+<section class="hero" id="heroSection">
   <h1>Get Your Premium Template Now</h1>
   <p>Instant Download • Lifetime Access</p>
 
   <div class="buy-buttons">
-    <!-- India Button -->
-    <a href="https://kirit22.gumroad.com/l/ecvuab" target="_blank" class="cta-button india" id="indiaBtn">
+    <a href="https://kirit22.gumroad.com/l/ecvuab" target="_blank" class="cta-button india" id="indiaBtnHero">
       Buy Now • India ₹2,999
     </a>
 
-    <!-- International Button -->
-    <a href="https://kirit22.gumroad.com/l/ivzfe" target="_blank" class="cta-button intl" id="intlBtn">
+    <a href="https://kirit22.gumroad.com/l/ivzfe" target="_blank" class="cta-button intl" id="intlBtnHero">
       Buy Now • International $50
     </a>
   </div>
 </section>
 
-<script>
-  // Simple country detection via browser language
-  const userLang = navigator.language || navigator.userLanguage;
-  const indiaBtn = document.getElementById('indiaBtn');
-  const intlBtn = document.getElementById('intlBtn');
+<!-- Sticky Bottom CTA (Mobile) -->
+<div class="sticky-cta">
+  <a href="#" target="_blank" id="stickyBtn">Buy Now</a>
+</div>
 
-  if(userLang.toLowerCase().includes('en-in') || userLang.toLowerCase().includes('hi')){
-    // India user → show India button only
-    indiaBtn.style.display = 'inline-block';
-    intlBtn.style.display = 'none';
+<script>
+  // Country detection
+  const userLang = navigator.language || navigator.userLanguage;
+  const indiaHero = document.getElementById('indiaBtnHero');
+  const intlHero = document.getElementById('intlBtnHero');
+  const stickyBtn = document.getElementById('stickyBtn');
+
+  let isIndia = userLang.toLowerCase().includes('en-in') || userLang.toLowerCase().includes('hi');
+
+  if(isIndia){
+    indiaHero.style.display = 'inline-block';
+    intlHero.style.display = 'none';
+    stickyBtn.href = 'https://kirit22.gumroad.com/l/ecvuab';
+    stickyBtn.textContent = 'Buy Now • India ₹2,999';
   } else {
-    // International user → show International button only
-    indiaBtn.style.display = 'none';
-    intlBtn.style.display = 'inline-block';
+    indiaHero.style.display = 'none';
+    intlHero.style.display = 'inline-block';
+    stickyBtn.href = 'https://kirit22.gumroad.com/l/ivzfe';
+    stickyBtn.textContent = 'Buy Now • International $50';
   }
+
+  // Hero scroll animation
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.getElementById('heroSection').classList.add('visible');
+    }, 300);
+  });
+
+  // Sticky CTA slide/fade on scroll
+  const stickyBar = document.querySelector('.sticky-cta');
+  window.addEventListener('scroll', () => {
+    let scrollY = window.scrollY;
+    if(scrollY > 100){ stickyBar.style.bottom = '0'; }
+    else{ stickyBar.style.bottom = '-80px'; }
+
+    // Parallax effect for hero background
+    document.getElementById('heroSection').style.backgroundPosition = `center ${-scrollY/3}px`;
+  });
 </script>
 
 </body>
