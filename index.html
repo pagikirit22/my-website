@@ -1,192 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FitLife Gym - Ready Made Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Template</title>
+<style>
+  /* Basic Reset */
+  * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
 
-  <link rel="stylesheet" href="css/style.css">
+  body { background: #f0f2f5; }
 
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; color:#333; }
-    header {
-  background: linear-gradient(135deg, #ff6f61, #ff8a65);
-  padding: 28px 20px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #7b2ff7, #f107a3);
+    color: white;
+    text-align: center;
+    padding: 100px 20px 60px;
+    position: relative;
+  }
 
-header h1 {
-  font-size: 34px;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
+  .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+  .hero p { font-size: 1.25rem; margin-bottom: 40px; }
 
-nav {
-  margin-top: 8px;
-}
+  /* Buy Buttons */
+  .buy-buttons { display: flex; flex-direction: column; gap: 20px; justify-content: center; align-items: center; }
 
-nav a {
-  color: rgba(255,255,255,0.9);
-  margin: 0 18px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  position: relative;
-}
+  @media(min-width:768px){ .buy-buttons { flex-direction: row; } }
 
-nav a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: white;
-  transition: width 0.3s ease;
-}
+  .cta-button {
+    position: relative;
+    display: inline-block;
+    padding: 18px 50px;
+    border-radius: 24px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
 
-nav a:hover::after {
-  width: 100%;
-}
-    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+  /* Gradient Buttons */
+  .india { background: linear-gradient(90deg, #fbc531, #e84118, #ff6b6b); }
+  .intl { background: linear-gradient(90deg, #00a8ff, #9c88ff, #8c7ae6); }
 
-    .hero { text-align:center; padding:70px 20px; background:#111; color:#fff; }
-    .hero h2 { font-size:32px; margin-bottom:15px; }
-    .hero p { font-size:18px; margin-bottom:30px; color:#ccc; }
+  /* Hover effects */
+  .cta-button:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+  }
 
-    .hero-buttons { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
+  /* Light sweep / shine animation */
+  .cta-button::after {
+    content:'';
+    position:absolute;
+    top:0;
+    left:-75%;
+    width:50%;
+    height:100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
+    transform: skewX(-25deg);
+  }
 
-    .animated-button {
-  padding: 16px 34px;
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
-  border-radius: 14px;
-  transition: all 0.35s ease;
-  min-width: 230px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1abc9c, #16a085);
-  box-shadow: 0 10px 30px rgba(26,188,156,0.35);
-}
+  .cta-button:hover::after {
+    left:125%;
+    transition: all 0.7s ease;
+  }
 
-.animated-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: 0.6s;
-}
-
-.animated-button:hover::before {
-  left: 100%;
-}
-
-.animated-button:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-}
-
-    #indiaBtn, #intlBtn { display:none; }
-
-    .animated-button:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
-
-    .section { padding:50px 20px; text-align:center; }
-    .benefits { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
-
-    .benefit-box { background:#fff; padding:20px; border-radius:10px; width:250px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-
-    .benefit-box.currency { background:#e0f7ff; }
-
-    footer { background:#333; color:white; padding:20px; text-align:center; }
-
-    @media(max-width:768px){
-      .hero h2 { font-size:24px; }
-      .hero p { font-size:16px; }
-    }
-  </style>
+  /* Sticky full-width on mobile */
+  @media(max-width:767px){
+    .cta-button { width: 90%; padding: 16px 0; font-size: 1.1rem; }
+  }
+</style>
 </head>
-
 <body>
 
-<header>
-  <h1>FitLife Gym</h1>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </nav>
-</header>
-
+<!-- Hero Section -->
 <section class="hero">
-  <h2>Ready-Made Gym Website for Sale</h2>
-  <p>Perfect for Gym Owners & Trainers – Get a professional website instantly</p>
+  <h1>Get Your Premium Template Now</h1>
+  <p>Instant Download • Lifetime Access</p>
 
-  <div class="hero-buttons">
-    <a id="indiaBtn" href="https://kirit22.gumroad.com/l/ecvuab" class="animated-button" target="_blank">
-      Buy ₹999
+  <div class="buy-buttons">
+    <!-- India Button -->
+    <a href="YOUR_GUMROAD_INDIA_LINK" target="_blank" class="cta-button india">
+      Buy Now • India ₹2,999
     </a>
 
-    <a id="intlBtn" href="https://kirit22.gumroad.com/l/ivzfe" class="animated-button" target="_blank">
-      Buy $29
+    <!-- International Button -->
+    <a href="YOUR_GUMROAD_INTERNATIONAL_LINK" target="_blank" class="cta-button intl">
+      Buy Now • International $50
     </a>
   </div>
-
-  <!-- Manual switch link (SAFE) -->
-  <div style="margin-top:20px;">
-    <a href="international.html" style="display:inline-block;padding:12px 24px;border:2px solid #3498db;color:#3498db;text-decoration:none;border-radius:8px;font-weight:bold;font-size:16px;">
-      🌍 Not from India? Buy for $29
-    </a>
-  </div>
-
-  <p style="font-size:14px; color:#888; margin-top:15px;">Website Template – Not a Training Program</p>
 </section>
-
-<section class="section">
-  <h2>Why Buy This Gym Website?</h2>
-  <div class="benefits">
-    <div class="benefit-box">✔ Ready-made professional gym website</div>
-    <div class="benefit-box">✔ Fully editable HTML & CSS</div>
-    <div class="benefit-box">✔ Mobile & desktop responsive</div>
-    <div class="benefit-box">✔ Instant download after payment</div>
-    <div class="benefit-box currency">✔ Extra Template Price: ₹499 / $9</div>
-    <div class="benefit-box currency">✔ Bonus Section: ₹199 / $4</div>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Perfect For</h2>
-  <p>Gym Owners • Personal Trainers • Fitness Startups</p>
-</section>
-
-<footer>
-  <p>© 2026 FitLife Gym</p>
-</footer>
-
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  const indiaBtn = document.getElementById('indiaBtn');
-  const intlBtn = document.getElementById('intlBtn');
-
-  const lang = navigator.language || '';
-  const isIndia = (lang === 'en-IN' || lang.startsWith('hi'));
-
-  if(isIndia){
-    indiaBtn.style.display = 'inline-block';
-    intlBtn.style.display = 'none';
-  } else {
-    indiaBtn.style.display = 'none';
-    intlBtn.style.display = 'inline-block';
-  }
-});
-</script>
 
 </body>
 </html>
