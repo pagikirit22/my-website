@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Template</title>
+<title>FitLife Gym Template</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
-  body { background: #f0f2f5; padding-bottom: 100px; overflow-x:hidden; }
+  body { background: #f0f2f5; padding-bottom: 50px; overflow-x:hidden; }
 
   /* Hero Section with animated gradient + parallax */
   .hero {
@@ -21,25 +21,25 @@
     background-blend-mode: overlay;
     overflow: hidden;
   }
-
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 
-  .hero h1, .hero p, .buy-buttons { opacity:0; transform: translateY(30px); transition: all 0.8s ease; }
-  .hero.visible h1, .hero.visible p, .hero.visible .buy-buttons { opacity:1; transform: translateY(0); }
+  .hero h1, .hero .subtitle, .hero .trust-text, .hero .cta-button { 
+    opacity:0; transform: translateY(30px); transition: all 0.8s ease; 
+  }
+  .hero.visible h1, .hero.visible .subtitle, .hero.visible .trust-text, .hero.visible .cta-button { 
+    opacity:1; transform: translateY(0); 
+  }
 
-  .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-  .hero p { font-size: 1.25rem; margin-bottom: 40px; }
+  .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+  .hero .subtitle { font-size: 1.5rem; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-weight: 500; }
+  .hero .trust-text { margin-top: 20px; font-size: 1rem; color: rgba(255,255,255,0.85); text-align: center; font-weight: 500; letter-spacing: 0.5px; }
 
-  /* Buy Buttons in hero */
-  .buy-buttons { display: flex; flex-direction: column; gap: 20px; justify-content: center; align-items: center; }
-  @media(min-width:768px){ .buy-buttons { flex-direction: row; } }
-
+  /* Single CTA Button */
   .cta-button {
-    position: relative;
     display: inline-block;
     padding: 18px 50px;
     border-radius: 24px;
@@ -50,14 +50,10 @@
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    margin-top: 20px;
+    background: linear-gradient(90deg, #fbc531, #e84118, #ff6b6b); /* default India gradient */
   }
-  .india { background: linear-gradient(90deg, #fbc531, #e84118, #ff6b6b); }
-  .intl { background: linear-gradient(90deg, #00a8ff, #9c88ff, #8c7ae6); }
-
-  .cta-button:hover {
-    transform: scale(1.07) translateY(-3px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.5);
-  }
+  .cta-button:hover { transform: scale(1.07) translateY(-3px); box-shadow: 0 14px 28px rgba(0,0,0,0.5); }
   .cta-button::after {
     content:'';
     position:absolute;
@@ -67,98 +63,47 @@
     height:100%;
     background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
     transform: skewX(-25deg);
+    position: absolute;
   }
   .cta-button:hover::after { left:125%; transition: all 0.7s ease; }
 
-  /* Sticky Bottom CTA Bar */
-  .sticky-cta {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #222;
-    padding: 12px 10px;
-    text-align: center;
-    z-index: 9999;
-    animation: slideUp 0.6s ease forwards;
+  /* Responsive tweaks */
+  @media(max-width:767px){
+    .hero { padding: 80px 15px 50px; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero .subtitle { font-size: 1.2rem; }
   }
-  .sticky-cta a {
-    display: inline-block;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    padding: 16px 0;
-    font-size: 1.1rem;
-    border-radius: 24px;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
-  }
-  .sticky-cta a:hover { transform: scale(1.07) translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.5); }
-  .sticky-cta a::after {
-    content:'';
-    position:absolute;
-    top:0;
-    left:-75%;
-    width:50%;
-    height:100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
-    transform: skewX(-25deg);
-  }
-  .sticky-cta a:hover::after { left:125%; transition: all 0.7s ease; }
-
-  @keyframes slideUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
-
-  @media(max-width:767px){ .sticky-cta { display: block; } }
 </style>
 </head>
 <body>
 
 <!-- Hero Section -->
 <section class="hero" id="heroSection">
-  <h1>Get Your Premium Template Now</h1>
-  <p>Instant Download • Lifetime Access</p>
+  <h1>FitLife Gym</h1>
+  <p class="subtitle">Ready-Made Gym Website for Sale</p>
 
-  <div class="buy-buttons">
-    <a href="https://kirit22.gumroad.com/l/ecvuab" target="_blank" class="cta-button india" id="indiaBtnHero">
-      Buy Now • India ₹2,999
-    </a>
+  <!-- Single CTA Button -->
+  <a href="#" target="_blank" class="cta-button" id="ctaButton">Buy Now • India ₹2,999</a>
 
-    <a href="https://kirit22.gumroad.com/l/ivzfe" target="_blank" class="cta-button intl" id="intlBtnHero">
-      Buy Now • International $50
-    </a>
-  </div>
+  <!-- Trust / Tagline Text -->
+  <p class="trust-text">Perfect for Gym Owners & Trainers – Get a professional website instantly</p>
 </section>
-
-<!-- Sticky Bottom CTA (Mobile) -->
-<div class="sticky-cta">
-  <a href="#" target="_blank" id="stickyBtn">Buy Now</a>
-</div>
 
 <script>
   // Country detection
   const userLang = navigator.language || navigator.userLanguage;
-  const indiaHero = document.getElementById('indiaBtnHero');
-  const intlHero = document.getElementById('intlBtnHero');
-  const stickyBtn = document.getElementById('stickyBtn');
+  const ctaButton = document.getElementById('ctaButton');
 
   let isIndia = userLang.toLowerCase().includes('en-in') || userLang.toLowerCase().includes('hi');
 
   if(isIndia){
-    indiaHero.style.display = 'inline-block';
-    intlHero.style.display = 'none';
-    stickyBtn.href = 'https://kirit22.gumroad.com/l/ecvuab';
-    stickyBtn.textContent = 'Buy Now • India ₹2,999';
+    ctaButton.href = 'https://kirit22.gumroad.com/l/ecvuab';
+    ctaButton.textContent = 'Buy Now • India ₹2,999';
+    ctaButton.style.background = 'linear-gradient(90deg, #fbc531, #e84118, #ff6b6b)';
   } else {
-    indiaHero.style.display = 'none';
-    intlHero.style.display = 'inline-block';
-    stickyBtn.href = 'https://kirit22.gumroad.com/l/ivzfe';
-    stickyBtn.textContent = 'Buy Now • International $50';
+    ctaButton.href = 'https://kirit22.gumroad.com/l/ivzfe';
+    ctaButton.textContent = 'Buy Now • International $50';
+    ctaButton.style.background = 'linear-gradient(90deg, #00a8ff, #9c88ff, #8c7ae6)';
   }
 
   // Hero scroll animation
@@ -168,14 +113,9 @@
     }, 300);
   });
 
-  // Sticky CTA slide/fade on scroll
-  const stickyBar = document.querySelector('.sticky-cta');
+  // Parallax background effect
   window.addEventListener('scroll', () => {
-    let scrollY = window.scrollY;
-    if(scrollY > 100){ stickyBar.style.bottom = '0'; }
-    else{ stickyBar.style.bottom = '-80px'; }
-
-    // Parallax effect for hero background
+    const scrollY = window.scrollY;
     document.getElementById('heroSection').style.backgroundPosition = `center ${-scrollY/3}px`;
   });
 </script>
