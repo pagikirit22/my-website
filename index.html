@@ -8,7 +8,7 @@
   * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
   body { background: #f0f2f5; padding-bottom: 100px; overflow-x:hidden; }
 
-  /* Hero Section with animated gradient + parallax */
+  /* Hero Section with animated gradient */
   .hero {
     color: white;
     text-align: center;
@@ -21,7 +21,6 @@
     background-blend-mode: overlay;
     overflow: hidden;
   }
-
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -174,9 +173,6 @@
     let scrollY = window.scrollY;
     if(scrollY > 100){ stickyBar.style.bottom = '0'; }
     else{ stickyBar.style.bottom = '-80px'; }
-
-    // Parallax effect for hero background
-    document.getElementById('heroSection').style.backgroundPosition = `center ${-scrollY/3}px`;
   });
 </script>
 
