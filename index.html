@@ -7,7 +7,6 @@
 <style>
   /* Basic Reset */
   * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
-
   body { background: #f0f2f5; }
 
   /* Hero Section */
@@ -18,13 +17,11 @@
     padding: 100px 20px 60px;
     position: relative;
   }
-
   .hero h1 { font-size: 3rem; margin-bottom: 20px; }
   .hero p { font-size: 1.25rem; margin-bottom: 40px; }
 
   /* Buy Buttons */
   .buy-buttons { display: flex; flex-direction: column; gap: 20px; justify-content: center; align-items: center; }
-
   @media(min-width:768px){ .buy-buttons { flex-direction: row; } }
 
   .cta-button {
@@ -62,7 +59,6 @@
     background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0) 70%);
     transform: skewX(-25deg);
   }
-
   .cta-button:hover::after {
     left:125%;
     transition: all 0.7s ease;
@@ -83,16 +79,33 @@
 
   <div class="buy-buttons">
     <!-- India Button -->
-    <a href="https://kirit22.gumroad.com/l/ecvuab" target="_blank" class="cta-button india">
+    <a href="https://kirit22.gumroad.com/l/ecvuab" target="_blank" class="cta-button india" id="indiaBtn">
       Buy Now • India ₹2,999
     </a>
 
     <!-- International Button -->
-    <a href="https://kirit22.gumroad.com/l/ivzfe" target="_blank" class="cta-button intl">
+    <a href="https://kirit22.gumroad.com/l/ivzfe" target="_blank" class="cta-button intl" id="intlBtn">
       Buy Now • International $50
     </a>
   </div>
 </section>
+
+<script>
+  // Simple country detection via browser language
+  const userLang = navigator.language || navigator.userLanguage;
+  const indiaBtn = document.getElementById('indiaBtn');
+  const intlBtn = document.getElementById('intlBtn');
+
+  if(userLang.toLowerCase().includes('en-in') || userLang.toLowerCase().includes('hi')){
+    // India user → show India button only
+    indiaBtn.style.display = 'inline-block';
+    intlBtn.style.display = 'none';
+  } else {
+    // International user → show International button only
+    indiaBtn.style.display = 'none';
+    intlBtn.style.display = 'inline-block';
+  }
+</script>
 
 </body>
 </html>
