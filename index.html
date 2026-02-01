@@ -24,27 +24,16 @@
       transition:0.3s; min-width:220px; text-align:center;
     }
 
-    /* Initially hidden buttons to prevent flash */
-    #indiaBtn, #intlBtn { display: none; }
+    #indiaBtn, #intlBtn { display:none; }
 
     .animated-button:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
 
     .section { padding:50px 20px; text-align:center; }
     .benefits { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
 
-    /* Benefit boxes default */
-    .benefit-box { 
-      background:#fff; 
-      padding:20px; 
-      border-radius:10px; 
-      width:250px; 
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    }
+    .benefit-box { background:#fff; padding:20px; border-radius:10px; width:250px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
 
-    /* Highlight currency boxes */
-    .benefit-box.currency { 
-      background:#e0f7ff; /* soft light blue */ 
-    }
+    .benefit-box.currency { background:#e0f7ff; }
 
     footer { background:#333; color:white; padding:20px; text-align:center; }
 
@@ -72,17 +61,22 @@
 
   <div class="hero-buttons">
     <a id="indiaBtn" href="https://kirit22.gumroad.com/l/ecvuab" class="animated-button" target="_blank">
-      <span class="currency" data-inr="₹999" data-usd="$29">Buy ₹999</span>
+      Buy ₹999
     </a>
 
     <a id="intlBtn" href="https://kirit22.gumroad.com/l/ivzfe" class="animated-button" target="_blank">
-      <span class="currency" data-inr="₹999" data-usd="$29">Buy $29</span>
+      Buy $29
     </a>
   </div>
 
-  <p class="currency" data-inr="₹999" data-usd="$29" style="font-size:14px; color:#888; margin-top:15px;">
-    Website Template – Not a Training Program
-  </p>
+  <!-- Manual switch link (SAFE) -->
+  <div style="margin-top:20px;">
+    <a href="international.html" style="display:inline-block;padding:12px 24px;border:2px solid #3498db;color:#3498db;text-decoration:none;border-radius:8px;font-weight:bold;font-size:16px;">
+      🌍 Not from India? Buy for $29
+    </a>
+  </div>
+
+  <p style="font-size:14px; color:#888; margin-top:15px;">Website Template – Not a Training Program</p>
 </section>
 
 <section class="section">
@@ -92,8 +86,8 @@
     <div class="benefit-box">✔ Fully editable HTML & CSS</div>
     <div class="benefit-box">✔ Mobile & desktop responsive</div>
     <div class="benefit-box">✔ Instant download after payment</div>
-    <div class="benefit-box currency" data-inr="₹499" data-usd="$9">✔ Extra Template Price: ₹499 / $9</div>
-    <div class="benefit-box currency" data-inr="₹199" data-usd="$4">✔ Bonus Section: ₹199 / $4</div>
+    <div class="benefit-box currency">✔ Extra Template Price: ₹499 / $9</div>
+    <div class="benefit-box currency">✔ Bonus Section: ₹199 / $4</div>
   </div>
 </section>
 
@@ -108,41 +102,21 @@
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-    const indiaBtn = document.getElementById('indiaBtn');
-    const intlBtn = document.getElementById('intlBtn');
+  const indiaBtn = document.getElementById('indiaBtn');
+  const intlBtn = document.getElementById('intlBtn');
 
-    // Hide both initially
-    indiaBtn.style.display = 'none';
+  const lang = navigator.language || '';
+  const isIndia = (lang === 'en-IN' || lang.startsWith('hi'));
+
+  if(isIndia){
+    indiaBtn.style.display = 'inline-block';
     intlBtn.style.display = 'none';
-
-    // Detect India users using browser language
-    const lang = navigator.language || navigator.userLanguage;
-    const isIndia = (lang === 'en-IN' || lang.startsWith('hi'));
-
-    // Show only the correct button
-    if(isIndia){
-        indiaBtn.style.display = 'inline-block';
-        intlBtn.style.display = 'none';
-    } else {
-        indiaBtn.style.display = 'none';
-        intlBtn.style.display = 'inline-block';
-    }
-
-    // Update all .currency elements dynamically
-    const currencyElements = document.querySelectorAll('.currency');
-    currencyElements.forEach(el => {
-        const inr = el.getAttribute('data-inr');
-        const usd = el.getAttribute('data-usd');
-        if(isIndia && inr) el.innerText = el.innerText.replace(/[$₹].*/, inr);
-        if(!isIndia && usd) el.innerText = el.innerText.replace(/[$₹].*/, usd);
-    });
+  } else {
+    indiaBtn.style.display = 'none';
+    intlBtn.style.display = 'inline-block';
+  }
 });
 </script>
-  <!-- Re-deploy trigger for cache fix -->
-
-
 
 </body>
 </html>
-
-
